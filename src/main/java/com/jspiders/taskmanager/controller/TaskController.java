@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jspiders.taskmanager.dto.CreateTaskDTO;
 import com.jspiders.taskmanager.entity.TaskEntity;
 import com.jspiders.taskmanager.service.TaskService;
 
@@ -33,6 +35,12 @@ public class TaskController {
 		if (task == null) {
 			return ResponseEntity.notFound().build();
 		}
+		return ResponseEntity.ok(task);
+	}
+	
+	public ResponseEntity<TaskEntity> addTask(@RequestBody CreateTaskDTO body){
+		var task = taskService.addTask(body.getTitle(), body.getDescription(), body.getDeadline());
+		
 		return ResponseEntity.ok(task);
 	}
 	
