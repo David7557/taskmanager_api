@@ -12,15 +12,17 @@ public class TaskService {
 	private ArrayList<TaskEntity> tasks = new ArrayList<>();
 	private int taskId = 1;
 	
-	public void addTask(String title, String description, String deadline) {
+	public TaskEntity addTask(String title, String description, String deadline) {
 		TaskEntity task = new TaskEntity();
 		task.setId(taskId);
 		task.setTitle(title);
 		task.setDescription(description);
-		task.setDeadline(new Date(deadline));
+		//task.setDeadline(new Date(deadline));
 		task.setCompleted(false);
 		tasks.add(task);
 		taskId++;
+		
+		return task;
 	}
 	
 	public ArrayList<TaskEntity> getTasks(){
