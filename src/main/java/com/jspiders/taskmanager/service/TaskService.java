@@ -3,11 +3,11 @@ package com.jspiders.taskmanager.service;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.jspiders.taskmanager.entity.TaskEntity;
 
-@Repository
+@Service
 public class TaskService {
 	private ArrayList<TaskEntity> tasks = new ArrayList<>();
 	private int taskId = 1;
@@ -21,5 +21,19 @@ public class TaskService {
 		task.setCompleted(false);
 		tasks.add(task);
 		taskId++;
+	}
+	
+	public ArrayList<TaskEntity> getTasks(){
+		return tasks;
+	}
+	
+	public TaskEntity getTaskById(int id) {
+		for(TaskEntity task: tasks){
+			if (task.getId() == id) {
+				return task;
+			}
+		}
+		
+		return null;
 	}
 }
